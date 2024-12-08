@@ -40,3 +40,5 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/ProjectTNV/nbproject/private/
+/ProjectTNV/dist/
