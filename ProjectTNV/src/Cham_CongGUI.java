@@ -13,14 +13,13 @@ import java.util.*;
 public class Cham_CongGUI extends javax.swing.JFrame implements Runnable{
     private int year, month, day, hour, minute, second;
     private final SmartCard SmartCard;
-    private final Chuc_NangGUI Chuc_NangGUI;
+    // private final Chuc_NangGUI Chuc_NangGUI;
 
     /**
      * Creates new form Cham_CongGUI
      */
-    public Cham_CongGUI(SmartCard SmartCard, Chuc_NangGUI Chuc_NangGUI) {
+    public Cham_CongGUI(SmartCard SmartCard) {
         this.SmartCard = SmartCard;
-        this.Chuc_NangGUI = Chuc_NangGUI;
         initComponents();
         
         Thread t = new Thread(this);

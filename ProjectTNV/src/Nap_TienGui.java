@@ -111,7 +111,9 @@ public class Nap_TienGui extends javax.swing.JFrame {
 
     private void thoatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoatButtonActionPerformed
         // TODO add your handling code here:
-        this.setVisible(true);
+        Thong_TinGUI Thong_TinGUI = new Thong_TinGUI(SmartCard);
+        Thong_TinGUI.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_thoatButtonActionPerformed
 
     private void napButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_napButtonActionPerformed

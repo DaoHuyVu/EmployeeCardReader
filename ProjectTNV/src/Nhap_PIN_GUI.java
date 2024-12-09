@@ -99,12 +99,20 @@ public class Nhap_PIN_GUI extends javax.swing.JFrame {
 
     private void xacNhanButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xacNhanButtonActionPerformed
         // TODO add your handling code here:
-        Thong_TinGUI Thong_TinGUI = new Thong_TinGUI(SmartCard);
+        // Cap_NhatGUI Cap_NhatGUI = new Cap_NhatGUI(SmartCard);
         String p = String.valueOf(PINLabel.getPassword());
         byte[] PIN = SmartCard.stringToByteArray(p);
         if(SmartCard.checkPIN(PIN)) {
-            this.setVisible(false);
+            // if(SmartCard.initInfo()) {
+            //     this.setVisible(false);
+            //     Cap_NhatGUI.setVisible(true);
+            // } else {
+            //     this.setVisible(false);
+            //     Thong_TinGUI.setVisible(true);
+            // }
+            Thong_TinGUI Thong_TinGUI = new Thong_TinGUI(SmartCard);
             Thong_TinGUI.setVisible(true);
+            this.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(this, "Mã PIN không đúng");
         }

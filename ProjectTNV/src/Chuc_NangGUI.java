@@ -122,7 +122,7 @@ public class Chuc_NangGUI extends javax.swing.JFrame {
 
     private void chamCongButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chamCongButtonActionPerformed
         // TODO add your handling code here:
-        Cham_CongGUI Cham_CongGUI = new Cham_CongGUI(SmartCard, this);
+        Cham_CongGUI Cham_CongGUI = new Cham_CongGUI(SmartCard);
         Cham_CongGUI.setVisible(true);
     }//GEN-LAST:event_chamCongButtonActionPerformed
 
