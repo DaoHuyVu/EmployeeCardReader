@@ -19,8 +19,11 @@ public class ChucNang_Admin extends javax.swing.JFrame {
     public ChucNang_Admin(SmartCard SmartCard) {
         initComponents();
         this.SmartCard = SmartCard;
-        KhoiTaoAdmin a = new KhoiTaoAdmin();
-        MainContent.add(a).setVisible(true);
+        TaoThe_GUI a = new TaoThe_GUI(SmartCard); 
+        MainContent.removeAll(); 
+        MainContent.add(a);      
+        MainContent.revalidate(); 
+        MainContent.repaint();    
     }
 
     /**
@@ -66,23 +69,23 @@ public class ChucNang_Admin extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("KHỞI TẠO THÔNG TIN");
+        jLabel1.setText("TẠO THẺ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
@@ -112,7 +115,7 @@ public class ChucNang_Admin extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Documents\\NetBeansProjects\\JavaCardGUI\\src\\main\\java\\icon\\avt.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/avt.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
 
@@ -182,7 +185,7 @@ public class ChucNang_Admin extends javax.swing.JFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -197,7 +200,7 @@ public class ChucNang_Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(nav, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE))
+                .addComponent(MainContent, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +213,7 @@ public class ChucNang_Admin extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        Admin_KetNoi Ket_NoiGUI = new Admin_KetNoi();
+        KetNoi_GUI Ket_NoiGUI = new KetNoi_GUI();
         if(SmartCard.disconnectCard()) {
             Ket_NoiGUI.setVisible(true);
             this.setVisible(false);
@@ -220,7 +223,7 @@ public class ChucNang_Admin extends javax.swing.JFrame {
     private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
         // TODO add your handling code here:
         MainContent.removeAll();
-        KhoiTaoAdmin kt = new KhoiTaoAdmin();
+        TaoThe_GUI kt = new TaoThe_GUI(SmartCard); 
         MainContent.add(kt);
         MainContent.revalidate();
         MainContent.repaint();

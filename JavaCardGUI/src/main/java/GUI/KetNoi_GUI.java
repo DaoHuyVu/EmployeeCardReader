@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
  *
  * @author ADMIN
  */
-public class Admin_KetNoi extends javax.swing.JFrame {
+public class KetNoi_GUI extends javax.swing.JFrame {
      private final SmartCard SmartCard = new SmartCard();
     /**
      * Creates new form NhanVien_KetNoi
      */
-    public Admin_KetNoi() {
+    public KetNoi_GUI() {
         initComponents();
     }
 
@@ -34,6 +34,7 @@ public class Admin_KetNoi extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         ketNoiButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        ketNoiButton2 = new javax.swing.JButton();
 
         ketNoiButton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         ketNoiButton.setText("Kết nối");
@@ -52,8 +53,8 @@ public class Admin_KetNoi extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         ketNoiButton1.setBackground(new java.awt.Color(153, 255, 153));
-        ketNoiButton1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        ketNoiButton1.setText("KẾT NỐI");
+        ketNoiButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ketNoiButton1.setText("KẾT NỐI NHÂN VIÊN");
         ketNoiButton1.setBorder(null);
         ketNoiButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,28 +62,41 @@ public class Admin_KetNoi extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Nhấn nút để kết nối với thẻ");
+
+        ketNoiButton2.setBackground(new java.awt.Color(153, 255, 153));
+        ketNoiButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        ketNoiButton2.setText("KẾT NỐI ADMIN");
+        ketNoiButton2.setBorder(null);
+        ketNoiButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ketNoiButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(ketNoiButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap()
+                .addComponent(ketNoiButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(ketNoiButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ketNoiButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(ketNoiButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(ketNoiButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,7 +119,7 @@ public class Admin_KetNoi extends javax.swing.JFrame {
 
     private void ketNoiButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ketNoiButton1ActionPerformed
         // TODO add your handling code here:
-        ChucNang_Admin Chuc_NangGUI = new ChucNang_Admin(SmartCard);
+     ChucNang_NhanVien Chuc_NangGUI = new ChucNang_NhanVien(SmartCard);
         if(SmartCard.connectCard()) {
                 Chuc_NangGUI.setVisible(true);
                 this.setVisible(false);  
@@ -115,6 +129,17 @@ public class Admin_KetNoi extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ketNoiButton1ActionPerformed
 
+    private void ketNoiButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ketNoiButton2ActionPerformed
+        // TODO add your handling code here:
+        ChucNang_Admin ChucNang_GUI = new ChucNang_Admin(SmartCard);
+        if(SmartCard.connectCard()) {
+                ChucNang_GUI.setVisible(true);
+                this.setVisible(false);  
+        } else {
+            JOptionPane.showMessageDialog(this, "Không thể kết nối đến thẻ");
+        }
+    }//GEN-LAST:event_ketNoiButton2ActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -132,13 +157,13 @@ public class Admin_KetNoi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_KetNoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KetNoi_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_KetNoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KetNoi_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_KetNoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KetNoi_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_KetNoi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(KetNoi_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -146,7 +171,7 @@ public class Admin_KetNoi extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin_KetNoi().setVisible(true);
+                new KetNoi_GUI().setVisible(true);
             }
         });
     }
@@ -157,5 +182,6 @@ public class Admin_KetNoi extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton ketNoiButton;
     private javax.swing.JButton ketNoiButton1;
+    private javax.swing.JButton ketNoiButton2;
     // End of variables declaration//GEN-END:variables
 }

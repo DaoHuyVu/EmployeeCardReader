@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package GUI;
 
@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author ADMIN
  */
-public class Tao_TheGUI extends javax.swing.JFrame {
- private final SmartCard SmartCard;
+public class TaoThe_GUI extends javax.swing.JPanel {
+private final SmartCard SmartCard;
     /**
      * Creates new form Tao_TheGUI
      */
-    public Tao_TheGUI(SmartCard SmartCard) {
+    public TaoThe_GUI(SmartCard SmartCard) {
         initComponents();
         this.SmartCard = SmartCard;
     }
@@ -38,53 +38,26 @@ public class Tao_TheGUI extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        label3 = new java.awt.Label();
         textField3 = new java.awt.TextField();
+        imgField = new javax.swing.JLabel();
         label4 = new java.awt.Label();
+        selectImgButton = new javax.swing.JButton();
         textField4 = new java.awt.TextField();
+        idField = new javax.swing.JTextField();
         label1 = new java.awt.Label();
+        button1 = new javax.swing.JButton();
         label5 = new java.awt.Label();
         nameField = new java.awt.TextField();
         label2 = new java.awt.Label();
         label7 = new java.awt.Label();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         birthField = new java.awt.TextField();
         namButton = new javax.swing.JRadioButton();
+        label3 = new java.awt.Label();
         nuButton = new javax.swing.JRadioButton();
-        imgField = new javax.swing.JLabel();
-        selectImgButton = new javax.swing.JButton();
-        idField = new javax.swing.JTextField();
-        button1 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setText("KHỞI TẠO THẺ");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(175, 175, 175))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
-        );
-
-        label3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        label3.setText("Nhập lại mã PIN :");
 
         textField3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         textField3.addActionListener(new java.awt.event.ActionListener() {
@@ -93,14 +66,42 @@ public class Tao_TheGUI extends javax.swing.JFrame {
             }
         });
 
+        imgField.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        imgField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imgField.setText("3x4");
+        imgField.setToolTipText("");
+        imgField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         label4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label4.setText("Mã PIN :");
+
+        selectImgButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectImgButton.setText("Chọn ảnh");
+        selectImgButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectImgButtonActionPerformed(evt);
+            }
+        });
 
         textField4.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         textField4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
+        idField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idFieldActionPerformed(evt);
+            }
+        });
+
         label1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label1.setText("Họ tên :");
+
+        button1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        button1.setText("TẠO");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
 
         label5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label5.setText("ID :");
@@ -118,10 +119,31 @@ public class Tao_TheGUI extends javax.swing.JFrame {
         label7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label7.setText("Giới tính :");
 
+        jPanel4.setBackground(new java.awt.Color(153, 255, 153));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("KHỞI TẠO THẺ");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(253, 253, 253)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
+        );
+
         birthField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
 
         buttonGroup1.add(namButton);
-        namButton.setActionCommand("Nam");
         namButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         namButton.setText("Nam");
         namButton.addActionListener(new java.awt.event.ActionListener() {
@@ -130,44 +152,19 @@ public class Tao_TheGUI extends javax.swing.JFrame {
             }
         });
 
+        label3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        label3.setText("Nhập lại mã PIN :");
+
         nuButton.setActionCommand("Nữ");
         buttonGroup1.add(nuButton);
         nuButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         nuButton.setText("Nữ");
 
-        imgField.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        imgField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgField.setText("3x4");
-        imgField.setToolTipText("");
-        imgField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        selectImgButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        selectImgButton.setText("Chọn ảnh");
-        selectImgButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectImgButtonActionPerformed(evt);
-            }
-        });
-
-        idField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idFieldActionPerformed(evt);
-            }
-        });
-
-        button1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        button1.setText("TẠO");
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,8 +204,8 @@ public class Tao_TheGUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,8 +213,8 @@ public class Tao_TheGUI extends javax.swing.JFrame {
                         .addComponent(selectImgButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(label5, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                            .addComponent(idField))
+                            .addComponent(label5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,11 +243,11 @@ public class Tao_TheGUI extends javax.swing.JFrame {
                                 .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(71, 71, 71)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -259,33 +256,23 @@ public class Tao_TheGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void textField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textField3ActionPerformed
 
-    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameFieldActionPerformed
-
-    private void namButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_namButtonActionPerformed
-
     private void selectImgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectImgButtonActionPerformed
         // TODO add your handling code here:
-                JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
         int returnValue = fileChooser.showOpenDialog(this);
         if(returnValue == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            
+
             String pathFile = file .getAbsolutePath();
-            BufferedImage image;    
+            BufferedImage image;
             try {
                 image = ImageIO.read(file);
                 imgField.setIcon(new ImageIcon(image.getScaledInstance(113, 151, image.SCALE_SMOOTH)));
@@ -301,7 +288,7 @@ public class Tao_TheGUI extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-         if(namButton.isSelected() || nuButton.isSelected()) {
+        if(namButton.isSelected() || nuButton.isSelected()) {
             String id = String.valueOf(idField.getText());
             String name = String.valueOf(nameField.getText());
             String birth = String.valueOf(birthField.getText());
@@ -311,20 +298,20 @@ public class Tao_TheGUI extends javax.swing.JFrame {
             sb.append(id).append("$").append(name).append("$").append(birth).append("$").append(gender);
             String r = sb.toString();
             byte[] info = SmartCard.stringToByteArray(r);
-            
+
             ImageIcon icon = (ImageIcon) imgField.getIcon();
             byte[] image = null;
 
             try {
                 BufferedImage bufferedImage = new BufferedImage(
-                icon.getIconWidth(),
-                icon.getIconHeight(),
-                BufferedImage.TYPE_INT_RGB
-            );
-            bufferedImage.getGraphics().drawImage(icon.getImage(), 0, 0, null);
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            ImageIO.write(bufferedImage, "jpg", outputStream);
-            image = outputStream.toByteArray();
+                    icon.getIconWidth(),
+                    icon.getIconHeight(),
+                    BufferedImage.TYPE_INT_RGB
+                );
+                bufferedImage.getGraphics().drawImage(icon.getImage(), 0, 0, null);
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                ImageIO.write(bufferedImage, "jpg", outputStream);
+                image = outputStream.toByteArray();
             } catch (Exception e) {
 
             }
@@ -334,51 +321,23 @@ public class Tao_TheGUI extends javax.swing.JFrame {
                     SmartCard.changeImage(image);
                 }
                 ThongTin Thong_TinGUI = new ThongTin(SmartCard);
-            } 
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Chưa chọn giới tính");
         }
-         ChucNang_NhanVien ChucNang_NhanVien = new ChucNang_NhanVien(SmartCard);
-         ChucNang_NhanVien.setVisible(true);
-                this.setVisible(false);  
+        ChucNang_NhanVien ChucNang_NhanVien = new ChucNang_NhanVien(SmartCard);
+        ChucNang_NhanVien.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_button1ActionPerformed
 
-   /**
-     * @param args the command line arguments
-     */
-    // public static void main(String args[]) {
-    //     /* Set the Nimbus look and feel */
-    //     //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    //     /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-    //      * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-    //      */
-    //     SmartCard SmartCard = new SmartCard();
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFieldActionPerformed
 
-    //     try {
-    //         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-    //             if ("Nimbus".equals(info.getName())) {
-    //                 javax.swing.UIManager.setLookAndFeel(info.getClassName());
-    //                 break;
-    //             }
-    //         }
-    //     } catch (ClassNotFoundException ex) {
-    //         java.util.logging.Logger.getLogger(Chuc_NangGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (InstantiationException ex) {
-    //         java.util.logging.Logger.getLogger(Chuc_NangGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (IllegalAccessException ex) {
-    //         java.util.logging.Logger.getLogger(Chuc_NangGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-    //         java.util.logging.Logger.getLogger(Chuc_NangGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    //     }
-    //     //</editor-fold>
+    private void namButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_namButtonActionPerformed
 
-    //     /* Create and display the form */
-    //     java.awt.EventQueue.invokeLater(new Runnable() {
-    //         public void run() {
-    //             new Tao_TheGUI(SmartCard).setVisible(true);
-    //         }
-    //     });
-    // }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.TextField birthField;
@@ -387,8 +346,12 @@ public class Tao_TheGUI extends javax.swing.JFrame {
     private javax.swing.JTextField idField;
     private javax.swing.JLabel imgField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private java.awt.Label label1;
     private java.awt.Label label2;
     private java.awt.Label label3;

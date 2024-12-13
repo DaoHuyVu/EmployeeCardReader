@@ -59,7 +59,7 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Documents\\NetBeansProjects\\JavaCardGUI\\src\\main\\java\\icon\\avt.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/avt.png"))); // NOI18N
 
         NameUser.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         NameUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -286,7 +286,7 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
-        NhanVien_KetNoi Ket_NoiGUI = new NhanVien_KetNoi();
+        KetNoi_GUI Ket_NoiGUI = new KetNoi_GUI();
         if(SmartCard.disconnectCard()) {
             Ket_NoiGUI.setVisible(true);
             this.setVisible(false);
