@@ -1,0 +1,4 @@
+--patch-module
+EmployeeCardReader.main=_
+--add-reads
+EmployeeCardReader.main=ALL-UNNAMED
