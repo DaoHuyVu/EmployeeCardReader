@@ -5,7 +5,9 @@
 package GUI;
 
 import Model.SmartCard;
+import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,9 +21,9 @@ public class ChucNang_Admin extends javax.swing.JFrame {
     public ChucNang_Admin(SmartCard SmartCard) {
         initComponents();
         this.SmartCard = SmartCard;
-        TaoThe_GUI a = new TaoThe_GUI(SmartCard); 
-        MainContent.removeAll(); 
-        MainContent.add(a);      
+//        TaoThe_GUI a = new TaoThe_GUI(SmartCard); 
+//        MainContent.removeAll(); 
+//        MainContent.add(a);      
         MainContent.revalidate(); 
         MainContent.repaint();    
     }
@@ -38,16 +40,17 @@ public class ChucNang_Admin extends javax.swing.JFrame {
         nav = new javax.swing.JPanel();
         NameUser = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        TaoTT = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        MoKhoa = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        Thoat = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         MainContent = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         nav.setBackground(new java.awt.Color(153, 255, 153));
         nav.setAlignmentX(0.0F);
@@ -61,87 +64,93 @@ public class ChucNang_Admin extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         jLabel10.setText("HI !");
 
-        jPanel3.setBackground(new java.awt.Color(153, 255, 153));
-        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        TaoTT.setBackground(new java.awt.Color(153, 255, 153));
+        TaoTT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TaoTT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel3MousePressed(evt);
+                TaoTTMousePressed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("TẠO THẺ");
+        jLabel1.setText("TẠO THÔNG TIN");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout TaoTTLayout = new javax.swing.GroupLayout(TaoTT);
+        TaoTT.setLayout(TaoTTLayout);
+        TaoTTLayout.setHorizontalGroup(
+            TaoTTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TaoTTLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+        TaoTTLayout.setVerticalGroup(
+            TaoTTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(TaoTTLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        MoKhoa.setBackground(new java.awt.Color(153, 255, 153));
+        MoKhoa.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MoKhoa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel1MousePressed(evt);
+                MoKhoaMousePressed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("MỞ KHÓA THẺ");
+        jLabel2.setMaximumSize(new java.awt.Dimension(145, 25));
+        jLabel2.setMinimumSize(new java.awt.Dimension(145, 25));
+        jLabel2.setPreferredSize(new java.awt.Dimension(145, 25));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout MoKhoaLayout = new javax.swing.GroupLayout(MoKhoa);
+        MoKhoa.setLayout(MoKhoaLayout);
+        MoKhoaLayout.setHorizontalGroup(
+            MoKhoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MoKhoaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(14, Short.MAX_VALUE))
+        MoKhoaLayout.setVerticalGroup(
+            MoKhoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MoKhoaLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/avt.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Java Card\\TNV GUI\\JavaCardGUI\\src\\main\\java\\icon\\avt.png"));
 
-        jPanel2.setBackground(new java.awt.Color(153, 255, 153));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Documents\\NetBeansProjects\\JavaCardGUI\\src\\main\\java\\icon\\icons8_shutdown_25px.png")); // NOI18N
-        jLabel4.setText("Thoát");
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+        Thoat.setBackground(new java.awt.Color(153, 255, 153));
+        Thoat.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Thoat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ThoatMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 40, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel4.setText("Thoát");
+
+        javax.swing.GroupLayout ThoatLayout = new javax.swing.GroupLayout(Thoat);
+        Thoat.setLayout(ThoatLayout);
+        ThoatLayout.setHorizontalGroup(
+            ThoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ThoatLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        ThoatLayout.setVerticalGroup(
+            ThoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ThoatLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout navLayout = new javax.swing.GroupLayout(nav);
@@ -163,11 +172,11 @@ public class ChucNang_Admin extends javax.swing.JFrame {
             .addGroup(navLayout.createSequentialGroup()
                 .addGroup(navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(MoKhoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(TaoTT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(navLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(55, 55, 55)
+                        .addComponent(Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         navLayout.setVerticalGroup(
@@ -182,12 +191,12 @@ public class ChucNang_Admin extends javax.swing.JFrame {
                         .addGap(6, 6, 6))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TaoTT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 264, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(MoKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addComponent(Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         MainContent.setBackground(new java.awt.Color(255, 255, 255));
@@ -209,38 +218,35 @@ public class ChucNang_Admin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        KetNoi_GUI Ket_NoiGUI = new KetNoi_GUI();
-        if(SmartCard.disconnectCard()) {
-            Ket_NoiGUI.setVisible(true);
-            this.setVisible(false);
-        }
-    }//GEN-LAST:event_jLabel4MouseClicked
-
-    private void jPanel3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MousePressed
+    private void TaoTTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TaoTTMousePressed
         // TODO add your handling code here:
         MainContent.removeAll();
         TaoThe_GUI kt = new TaoThe_GUI(SmartCard); 
         MainContent.add(kt);
         MainContent.revalidate();
         MainContent.repaint();
+    }//GEN-LAST:event_TaoTTMousePressed
 
-        kt.setVisible(true);
-    }//GEN-LAST:event_jPanel3MousePressed
-
-    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+    private void MoKhoaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MoKhoaMousePressed
         // TODO add your handling code here:
         MainContent.removeAll();
-        MoKhoa m = new  MoKhoa();
+        MoKhoa m = new  MoKhoa(SmartCard);
         MainContent.add(m);
         MainContent.revalidate();
         MainContent.repaint();
+    }//GEN-LAST:event_MoKhoaMousePressed
 
-        m.setVisible(true);
-    }//GEN-LAST:event_jPanel1MousePressed
+    private void ThoatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThoatMousePressed
+        // TODO add your handling code here:
+        KetNoi_GUI Ket_NoiGUI = new KetNoi_GUI();
+        if(SmartCard.disconnectCard()) {
+            Ket_NoiGUI.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_ThoatMousePressed
 
   /**
      * @param args the command line arguments
@@ -281,15 +287,15 @@ public class ChucNang_Admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainContent;
+    private javax.swing.JPanel MoKhoa;
     private javax.swing.JLabel NameUser;
+    private javax.swing.JPanel TaoTT;
+    private javax.swing.JPanel Thoat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel nav;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,30 +6,34 @@ package GUI;
 
 import Model.SmartCard;
 import java.awt.BorderLayout;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author ADMIN
  */
 public class ChucNang_NhanVien extends javax.swing.JFrame {
- private final SmartCard SmartCard;
+    private final SmartCard SmartCard;
+    private JPanel onSelect = null;
     /**
      * Creates new form ChucNang_NhanVien
      */
     public ChucNang_NhanVien(SmartCard SmartCard) {
-        initComponents();
         this.SmartCard = SmartCard;
+        initComponents();
+        
         MainContent.setLayout(new BorderLayout());  // Set layout for MainContent
-        ThongTin a  = new ThongTin(SmartCard);  // Create ThongTin panel
-        MainContent.add(a, BorderLayout.CENTER);  // Add ThongTin to the center of MainContent
+//        ThongTin a  = new ThongTin(SmartCard);  // Create ThongTin panel
+//        MainContent.add(a, BorderLayout.CENTER);  // Add ThongTin to the center of MainContent
 
         MainContent.revalidate();  // Revalidate to refresh the layout
         MainContent.repaint();  // Repaint to ensure the changes are visible
-
-        
     }
 
+    public void setOnSelect(JPanel onSelect) {
+        this.onSelect = onSelect;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -39,7 +43,7 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        nav = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         NameUser = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -49,27 +53,32 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DoiPin = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        Thoat = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         MuaDo = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         MainContent = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+        nav.setBackground(new java.awt.Color(153, 255, 153));
+        nav.setAlignmentX(0.0F);
+        nav.setAlignmentY(0.0F);
+        nav.setPreferredSize(new java.awt.Dimension(276, 544));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/avt.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Java Card\\TNV GUI\\JavaCardGUI\\src\\main\\java\\icon\\avt.png"));
 
         NameUser.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         NameUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NameUser.setText("ADMIN");
+        NameUser.setText("USER");
         NameUser.setToolTipText("");
 
         jLabel10.setFont(new java.awt.Font("SF Pro Display", 1, 18)); // NOI18N
         jLabel10.setText("HI !");
 
         ThongTin.setBackground(new java.awt.Color(153, 255, 153));
+        ThongTin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ThongTin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ThongTinMousePressed(evt);
@@ -91,12 +100,13 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
         ThongTinLayout.setVerticalGroup(
             ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ThongTinLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         ChamCong.setBackground(new java.awt.Color(153, 255, 153));
+        ChamCong.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ChamCong.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 ChamCongMousePressed(evt);
@@ -113,16 +123,18 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
             .addGroup(ChamCongLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         ChamCongLayout.setVerticalGroup(
             ChamCongLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ChamCongLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         DoiPin.setBackground(new java.awt.Color(153, 255, 153));
+        DoiPin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DoiPin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 DoiPinMousePressed(evt);
@@ -144,40 +156,41 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
         DoiPinLayout.setVerticalGroup(
             DoiPinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DoiPinLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel7.setBackground(new java.awt.Color(153, 255, 153));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\ADMIN\\Documents\\NetBeansProjects\\JavaCardGUI\\src\\main\\java\\icon\\icons8_shutdown_25px.png")); // NOI18N
-        jLabel6.setText("Thoát");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+        Thoat.setBackground(new java.awt.Color(153, 255, 153));
+        Thoat.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Thoat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ThoatMousePressed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel6.setText("Thoát");
+
+        javax.swing.GroupLayout ThoatLayout = new javax.swing.GroupLayout(Thoat);
+        Thoat.setLayout(ThoatLayout);
+        ThoatLayout.setHorizontalGroup(
+            ThoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ThoatLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel6)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        ThoatLayout.setVerticalGroup(
+            ThoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ThoatLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         MuaDo.setBackground(new java.awt.Color(153, 255, 153));
+        MuaDo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         MuaDo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 MuaDoMousePressed(evt);
@@ -199,42 +212,42 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
         MuaDoLayout.setVerticalGroup(
             MuaDoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MuaDoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout navLayout = new javax.swing.GroupLayout(nav);
+        nav.setLayout(navLayout);
+        navLayout.setHorizontalGroup(
+            navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ChamCong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(DoiPin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(ThongTin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(MuaDo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(navLayout.createSequentialGroup()
+                .addGroup(navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(navLayout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jLabel3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(navLayout.createSequentialGroup()
                                 .addGap(27, 27, 27)
                                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(navLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(NameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(navLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        navLayout.setVerticalGroup(
+            navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(navLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(navLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(NameUser, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,12 +257,12 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
                 .addComponent(ThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ChamCong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MuaDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DoiPin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Thoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
@@ -259,11 +272,11 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
         MainContent.setLayout(MainContentLayout);
         MainContentLayout.setHorizontalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 621, Short.MAX_VALUE)
+            .addGap(0, 578, Short.MAX_VALUE)
         );
         MainContentLayout.setVerticalGroup(
             MainContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,71 +284,85 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nav, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(nav, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(MainContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-        // TODO add your handling code here:
-        KetNoi_GUI Ket_NoiGUI = new KetNoi_GUI();
-        if(SmartCard.disconnectCard()) {
-            Ket_NoiGUI.setVisible(true);
-            this.setVisible(false);
-        }
-    }//GEN-LAST:event_jLabel6MouseClicked
 
     private void ThongTinMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongTinMousePressed
             // TODO add your handling code here:
-        MainContent.removeAll();
-        ThongTin tt = new ThongTin(SmartCard);
-        MainContent.add(tt);
-        MainContent.revalidate();
-        MainContent.repaint();
-
-        tt.setVisible(true);
+        if(onSelect == ThongTin) return;
+        NhapPin NhapPin = new NhapPin(this, SmartCard, () -> {
+            MainContent.removeAll();
+            ThongTin tt = new ThongTin(SmartCard, this);
+            MainContent.add(tt);
+            MainContent.revalidate();
+            MainContent.repaint();
+            
+            onSelect = ThongTin;
+        }, () -> {
+            onSelect = null;
+        });
+        NhapPin.setVisible(true);
     }//GEN-LAST:event_ThongTinMousePressed
 
     private void DoiPinMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DoiPinMousePressed
         // TODO add your handling code here:
+        if(onSelect == DoiPin) return;
+        onSelect = DoiPin;
         MainContent.removeAll();
-        DoiPin dp = new DoiPin(SmartCard);
+        DoiPin dp = new DoiPin(SmartCard, this);
         MainContent.add(dp);
         MainContent.revalidate();
         MainContent.repaint();
-
-        dp.setVisible(true);
     }//GEN-LAST:event_DoiPinMousePressed
 
     private void ChamCongMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChamCongMousePressed
         // TODO add your handling code here:
+        if(onSelect == ChamCong) return;
+        onSelect = ChamCong;
         MainContent.removeAll();
         ChamCong cc = new ChamCong(SmartCard,this);
         MainContent.add(cc);
         MainContent.revalidate();
         MainContent.repaint();
-
-        cc.setVisible(true);
     }//GEN-LAST:event_ChamCongMousePressed
 
     private void MuaDoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MuaDoMousePressed
         // TODO add your handling code here:
-        MainContent.removeAll();
-        Mua_DoGUI md = new Mua_DoGUI();
-        MainContent.add(md);
-        MainContent.revalidate();
-        MainContent.repaint();
-
-        md.setVisible(true);
+        if(onSelect == MuaDo) return;
+        NhapPin NhapPin = new NhapPin(this, SmartCard, () -> {
+            MainContent.removeAll();
+            Mua_DoGUI md = new Mua_DoGUI();
+            MainContent.add(md);
+            MainContent.revalidate();
+            MainContent.repaint();
+            
+            onSelect = MuaDo;
+        }, () -> {
+            onSelect = null;
+        });
+        NhapPin.setVisible(true);
     }//GEN-LAST:event_MuaDoMousePressed
+
+    private void ThoatMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThoatMousePressed
+        // TODO add your handling code here:
+        KetNoi_GUI Ket_NoiGUI = new KetNoi_GUI();
+        if(SmartCard.disconnectCard()) {
+            onSelect = null;
+            Ket_NoiGUI.setVisible(true);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_ThoatMousePressed
 
   /**
      * @param args the command line arguments
@@ -380,6 +407,7 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
     private javax.swing.JPanel MainContent;
     private javax.swing.JPanel MuaDo;
     private javax.swing.JLabel NameUser;
+    private javax.swing.JPanel Thoat;
     private javax.swing.JPanel ThongTin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -388,7 +416,10 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel nav;
     // End of variables declaration//GEN-END:variables
+
+    private void enableEvents(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

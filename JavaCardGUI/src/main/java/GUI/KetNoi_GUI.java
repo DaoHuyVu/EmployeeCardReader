@@ -29,49 +29,36 @@ public class KetNoi_GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ketNoiButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        ketNoiButton1 = new javax.swing.JButton();
+        userButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        ketNoiButton2 = new javax.swing.JButton();
-
-        ketNoiButton.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        ketNoiButton.setText("Kết nối");
-        ketNoiButton.setBorder(null);
-        ketNoiButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ketNoiButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setText("Nhấn nút để kết nối với thẻ");
+        adminButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        ketNoiButton1.setBackground(new java.awt.Color(153, 255, 153));
-        ketNoiButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ketNoiButton1.setText("KẾT NỐI NHÂN VIÊN");
-        ketNoiButton1.setBorder(null);
-        ketNoiButton1.addActionListener(new java.awt.event.ActionListener() {
+        userButton.setBackground(new java.awt.Color(153, 255, 153));
+        userButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        userButton.setText("KẾT NỐI NHÂN VIÊN");
+        userButton.setBorder(null);
+        userButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ketNoiButton1ActionPerformed(evt);
+                userButtonActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Nhấn nút để kết nối với thẻ");
 
-        ketNoiButton2.setBackground(new java.awt.Color(153, 255, 153));
-        ketNoiButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        ketNoiButton2.setText("KẾT NỐI ADMIN");
-        ketNoiButton2.setBorder(null);
-        ketNoiButton2.addActionListener(new java.awt.event.ActionListener() {
+        adminButton.setBackground(new java.awt.Color(153, 255, 153));
+        adminButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        adminButton.setText("KẾT NỐI ADMIN");
+        adminButton.setBorder(null);
+        adminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ketNoiButton2ActionPerformed(evt);
+                adminButtonActionPerformed(evt);
             }
         });
 
@@ -81,11 +68,11 @@ public class KetNoi_GUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ketNoiButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(ketNoiButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
@@ -93,9 +80,9 @@ public class KetNoi_GUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ketNoiButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(ketNoiButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(adminButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -111,25 +98,31 @@ public class KetNoi_GUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ketNoiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ketNoiButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ketNoiButtonActionPerformed
-
-    private void ketNoiButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ketNoiButton1ActionPerformed
+    private void userButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userButtonActionPerformed
         // TODO add your handling code here:
      ChucNang_NhanVien Chuc_NangGUI = new ChucNang_NhanVien(SmartCard);
         if(SmartCard.connectCard()) {
-                Chuc_NangGUI.setVisible(true);
-                this.setVisible(false);  
+            if(!SmartCard.getInfo().equals("$$$")) {
+                if(!SmartCard.checkLocked()) {
+                    Chuc_NangGUI.setVisible(true);
+                    this.setVisible(false);  
+                } else {
+                    SmartCard.disconnectCard();
+                    JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa, liên hệ admin để mở khóa thẻ");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Thẻ chưa được tạo thông tin, liên hệ admin để tạo thông tin");
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Không thể kết nối đến thẻ");
         }
 
-    }//GEN-LAST:event_ketNoiButton1ActionPerformed
+    }//GEN-LAST:event_userButtonActionPerformed
 
-    private void ketNoiButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ketNoiButton2ActionPerformed
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
         ChucNang_Admin ChucNang_GUI = new ChucNang_Admin(SmartCard);
         if(SmartCard.connectCard()) {
@@ -138,7 +131,7 @@ public class KetNoi_GUI extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Không thể kết nối đến thẻ");
         }
-    }//GEN-LAST:event_ketNoiButton2ActionPerformed
+    }//GEN-LAST:event_adminButtonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -177,11 +170,9 @@ public class KetNoi_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton adminButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton ketNoiButton;
-    private javax.swing.JButton ketNoiButton1;
-    private javax.swing.JButton ketNoiButton2;
+    private javax.swing.JButton userButton;
     // End of variables declaration//GEN-END:variables
 }

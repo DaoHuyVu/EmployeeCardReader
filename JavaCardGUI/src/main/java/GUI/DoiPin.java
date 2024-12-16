@@ -13,12 +13,15 @@ import javax.swing.JOptionPane;
  */
 public class DoiPin extends javax.swing.JPanel {
     private final SmartCard SmartCard;
+    private final ChucNang_NhanVien ChucNang_NhanVien;
     /**
      * Creates new form DoiPin
      */
-    public DoiPin(SmartCard SmartCard) {
-        initComponents();
+    public DoiPin(SmartCard SmartCard, ChucNang_NhanVien ChucNang_NhanVien) {
         this.SmartCard = SmartCard;
+        this.ChucNang_NhanVien = ChucNang_NhanVien;
+        initComponents();
+        
     }
 
     /**
@@ -89,7 +92,7 @@ public class DoiPin extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(244, 244, 244)
                 .addComponent(jLabel4)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,54 +108,58 @@ public class DoiPin extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(62, 62, 62))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(luuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(oldPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(oldPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(oldCB))
-                    .addComponent(newPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(newPINCf, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(newPINCf, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(newCB)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(oldPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(oldCB)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(22, 22, 22)
+                    .addComponent(oldPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(oldCB))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(newPINCf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(newCB)))
-                .addGap(35, 35, 35)
+                    .addComponent(newPIN, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newPINCf, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newCB))
+                .addGap(42, 42, 42)
                 .addComponent(luuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,14 +193,25 @@ public class DoiPin extends javax.swing.JPanel {
         String on = String.valueOf(newPIN.getPassword());
         String onc = String.valueOf(newPINCf.getPassword());
         byte[] oPIN = SmartCard.stringToByteArray(op);
+        String stat = SmartCard.checkPIN(oPIN);
+        int count = 3 - Integer.parseInt(stat);
 
-        if(SmartCard.checkPIN(oPIN)){
+        if(stat.equals("00")){
             if(on.equals(onc)) {
                 if(on.length() == 6) {
-                    byte[] nPIN = SmartCard.stringToByteArray(on);
-                    if (SmartCard.changePIN(nPIN)) {
-                        JOptionPane.showMessageDialog(this, "Đổi PIN thành công");
-                        this.setVisible(false);
+                    if(!onc.equals(op)) {
+                        byte[] nPIN = SmartCard.stringToByteArray(on);
+                        if (SmartCard.changePIN(nPIN)) {
+                            JOptionPane.showMessageDialog(this, "Đổi PIN thành công");
+                            
+                            javax.swing.JPanel parent = (javax.swing.JPanel) this.getParent();
+                            parent.removeAll();
+                            parent.add(new DoiPin(SmartCard, ChucNang_NhanVien));
+                            parent.revalidate();
+                            parent.repaint();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Mã PIN mới không được trùng với PIN cũ");
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Độ dài PIN phải gồm 6 kí tự");
@@ -201,8 +219,14 @@ public class DoiPin extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(this, "Mã PIN nhập lại không khớp nhau");
             }
+        } else if(!stat.equals("0")) {
+            JOptionPane.showMessageDialog(this, "Đã nhập sai mã PIN " + count + "/3 lần. Sau 3 lần sai, thẻ sẽ bị khóa");
         } else {
-            JOptionPane.showMessageDialog(this, "Mã PIN không đúng");
+            JOptionPane.showMessageDialog(this, "Nhập sai quá số lần cho phép, thẻ bị khóa và kết thúc phiên");
+            ChucNang_NhanVien.setVisible(false);
+            SmartCard.disconnectCard();
+            KetNoi_GUI ketNoiGUI = new KetNoi_GUI();
+            ketNoiGUI.setVisible(true); 
         }
 
     }//GEN-LAST:event_luuButtonActionPerformed
