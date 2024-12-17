@@ -162,13 +162,15 @@ public class Nap_TienGUI extends javax.swing.JDialog {
         if(!cashField.getText().isEmpty()) {
             long l = Long.parseLong(cashField.getText().trim());
             if(l >= 10000) {
-                 String hex = Long.toHexString(l);
-                if (hex.length() % 2 != 0) {
-                    hex = "0" + hex;  
-                }
-                byte[] cash = SmartCard.hexStringToByteArray(hex);
+                byte[] cash = new byte[4];
+                cash[0] = (byte)((l >> 24) & 0xff);
+                cash[1] = (byte)((l >> 16) & 0xff);
+                cash[2] = (byte)((l >> 8) & 0xff);
+                cash[3] = (byte)((l) & 0xff);
+                
                 if(SmartCard.deposit(cash)) {
                     JOptionPane.showMessageDialog(this,"Đã nạp thành công: " + l + " VND");
+                    ThongTin.updateBalance();
                     this.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this,"Xảy ra lỗi trong quá trình nạp");

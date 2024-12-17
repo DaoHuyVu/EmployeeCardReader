@@ -6,8 +6,13 @@ package GUI;
 
 import Model.SmartCard;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -20,15 +25,17 @@ import javax.swing.JOptionPane;
  */
 public class TaoThe_GUI extends javax.swing.JPanel {
 private final SmartCard SmartCard;
+private int currentEmployeeId;
     /**
      * Creates new form Tao_TheGUI
      */
     public TaoThe_GUI(SmartCard SmartCard) {
         this.SmartCard = SmartCard;
         initComponents();
-        if(!SmartCard.getInfo().equals("$$$")) {
-            button1.setEnabled(false);
-        }
+//        if(!SmartCard.getInfo().equals("$$$")) {
+//            button1.setEnabled(false);
+//        }
+        getLatestEmployeeId();
     }
 
     /**
@@ -64,7 +71,7 @@ private final SmartCard SmartCard;
         imgField.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         imgField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgField.setToolTipText("");
-        imgField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        imgField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         label4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label4.setText("Mã PIN :");
@@ -371,4 +378,59 @@ private final SmartCard SmartCard;
     private javax.swing.JTextField pinField;
     private javax.swing.JButton selectImgButton;
     // End of variables declaration//GEN-END:variables
+    private void getLatestEmployeeId(){
+         try {
+            // Define the URL
+            URL url = new URI("http://localhost:9192/employee/latestId").toURL();
+            // Open connection
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String line;
+            StringBuilder response = new StringBuilder();
+                
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            // Print response
+            currentEmployeeId = Integer.parseInt(response.toString()) + 1;
+            idField.setText(formatEmployeeId());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private String formatEmployeeId(){
+       return "NV" + String.format("%06d", currentEmployeeId);
+    }
+    private void pushEmployeeData(
+            String employeeId,
+            String name,
+            String gender,
+            String dateOfBirth,
+            Double balance,
+            String pinCode,
+            String publicKey
+    ){
+         try {
+            // Define the URL
+            URL url = new URI("http://localhost:9192/employee").toURL();
+            // Open connection
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+
+            connection.setDoOutput(true);
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+   

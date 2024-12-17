@@ -273,15 +273,17 @@ public class SmartCard {
         return false;
     }
     
-    public String getBalance() {
+    public long getBalance() {
         try {
             response = channel.transmit(new CommandAPDU(0xA0, 0x14, 0x00, 0x00));
             byte[] data = response.getData();
-            String d = bytesToHex(data).replaceAll(" ", "");
-            return d;
+            for(byte d : data){
+                System.out.println(d);
+            }
+            return data[3] + (data[2] << 8) + (data[1] << 16) + (data[0] << 24);
         } catch (CardException e) {
             
         }
-        return null;
+        return 0;
     }
 }

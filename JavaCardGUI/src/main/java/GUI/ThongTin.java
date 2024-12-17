@@ -73,9 +73,8 @@ public class ThongTin extends javax.swing.JPanel {
     
     private void setBalanceToLabel() {
         try {
-            String hex = SmartCard.getBalance();
-            Long balance = Long.parseLong(hex, 16);
-            balanceLabel.setText(balance.toString() + " VND");
+            long balance = SmartCard.getBalance();
+            balanceLabel.setText(String.valueOf(balance) + " VND");
         } catch (Exception e) {
             
         }
@@ -288,4 +287,7 @@ public class ThongTin extends javax.swing.JPanel {
     public javax.swing.JButton pushCashButton;
     public javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+    public void updateBalance(){
+        setBalanceToLabel();
+    }
 }
