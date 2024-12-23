@@ -313,8 +313,11 @@
             </Property>
             <Property name="text" type="java.lang.String" value="N&#x1eef;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuButtonActionPerformed"/>
+          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="namButton.setActionCommand(&quot;N&#x1eef;&quot;);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="nuButton.setActionCommand(&quot;N&#x1eef;&quot;);"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="nuButton.setActionCommand(&quot;N&#x1eef;&quot;);"/>
           </AuxValues>
         </Component>

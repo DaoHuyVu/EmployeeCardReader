@@ -5,7 +5,9 @@
 package GUI;
 
 import Model.SmartCard;
+import java.util.Locale;
 import javax.swing.JOptionPane;
+import service.ApiService;
 
 /**
  *
@@ -14,6 +16,7 @@ import javax.swing.JOptionPane;
 public class DoiPin extends javax.swing.JPanel {
     private final SmartCard SmartCard;
     private final ChucNang_NhanVien ChucNang_NhanVien;
+    private final ApiService service = new ApiService();
     /**
      * Creates new form DoiPin
      */
@@ -206,6 +209,17 @@ public class DoiPin extends javax.swing.JPanel {
                             
                             javax.swing.JPanel parent = (javax.swing.JPanel) this.getParent();
                             parent.removeAll();
+                            StringBuilder pinCode = new StringBuilder();
+                            for(byte i : nPIN){
+                                pinCode.append((char)i);
+                            }
+                            System.out.print(pinCode);
+                            String data = String.format(Locale.getDefault(),"""
+                                          {
+                                            "pinCode" : "%s"
+                                          }
+                                          """,pinCode);
+                            service.updateData(data);
                             parent.add(new DoiPin(SmartCard, ChucNang_NhanVien));
                             parent.revalidate();
                             parent.repaint();

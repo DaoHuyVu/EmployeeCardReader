@@ -287,7 +287,5 @@ public class ThongTin extends javax.swing.JPanel {
     public javax.swing.JButton pushCashButton;
     public javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
-    public void updateBalance(){
-        setBalanceToLabel();
-    }
+
 }

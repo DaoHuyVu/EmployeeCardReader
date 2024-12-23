@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 public class ChucNang_NhanVien extends javax.swing.JFrame {
     private final SmartCard SmartCard;
     private JPanel onSelect = null;
+    //Global IP used to stored EmployeeId , but should be used within this frame l
+    public static String employeeId;
     /**
      * Creates new form ChucNang_NhanVien
      */
@@ -28,6 +30,7 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
 
         MainContent.revalidate();  // Revalidate to refresh the layout
         MainContent.repaint();  // Repaint to ensure the changes are visible
+        
     }
 
     public void setOnSelect(JPanel onSelect) {

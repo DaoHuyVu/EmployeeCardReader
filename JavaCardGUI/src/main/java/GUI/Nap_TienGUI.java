@@ -7,6 +7,7 @@ package GUI;
 import Model.SmartCard;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import service.ApiService;
 
 /**
  *
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 public class Nap_TienGUI extends javax.swing.JDialog {
     private final SmartCard SmartCard;
     private final ThongTin ThongTin;
+    private final ApiService service = new ApiService();
     /**
      * Creates new form Nap_TienGUI
      */
@@ -167,10 +169,20 @@ public class Nap_TienGUI extends javax.swing.JDialog {
                 cash[1] = (byte)((l >> 16) & 0xff);
                 cash[2] = (byte)((l >> 8) & 0xff);
                 cash[3] = (byte)((l) & 0xff);
-                
+                System.out.print("Deposit : ");
+                for(byte i : cash){
+                    System.out.print(i+" ");
+                }
+                System.out.print("\n");
                 if(SmartCard.deposit(cash)) {
+                    String balance = String.format("""
+                                                   {
+                                                        "balance" : "%s"
+                                                   }
+                                                   """,l);
+                    service.updateData(balance);
                     JOptionPane.showMessageDialog(this,"Đã nạp thành công: " + l + " VND");
-                    ThongTin.updateBalance();
+                    ThongTin.afterUpdate();
                     this.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this,"Xảy ra lỗi trong quá trình nạp");

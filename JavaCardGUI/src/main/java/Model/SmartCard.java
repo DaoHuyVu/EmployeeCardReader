@@ -1,15 +1,9 @@
 package Model;
 
 import java.awt.HeadlessException;
-import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
-
 import javax.smartcardio.*;
-
-import java.util.Arrays;
-import java.util.HexFormat;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class SmartCard {
     public static final byte[] AID_APPLET = { (byte) 0x11, (byte) 0x22, (byte) 0x33, (byte) 0x44, (byte) 0x55, (byte) 0x00};
@@ -277,10 +271,14 @@ public class SmartCard {
         try {
             response = channel.transmit(new CommandAPDU(0xA0, 0x14, 0x00, 0x00));
             byte[] data = response.getData();
-            for(byte d : data){
-                System.out.println(d);
+            System.out.print("Get from card: ");
+            for (byte d : data) {
+                System.out.print((d & 0xFF) + " "); // Mask to avoid sign extension
             }
-            return data[3] + (data[2] << 8) + (data[1] << 16) + (data[0] << 24);
+            System.out.print("\n");
+
+            // Reconstruct the value safely
+            return (data[3] & 0xFF) | ((data[2] & 0xFF) << 8) | ((data[1] & 0xFF) << 16) | ((data[0] & 0xFF) << 24);
         } catch (CardException e) {
             
         }

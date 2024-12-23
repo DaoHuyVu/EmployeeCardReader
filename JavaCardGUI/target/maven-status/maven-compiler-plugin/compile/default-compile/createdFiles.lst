@@ -17,6 +17,7 @@ GUI\TaoThe_GUI$4.class
 GUI\KetNoi_GUI.class
 GUI\Cap_NhatGUI$2.class
 GUI\Mua_DoGUI$2.class
+GUI\TaoThe_GUI$6.class
 GUI\Thanh_ToanGUI$4.class
 GUI\NhapPin.class
 module-info.class
@@ -32,4 +33,5 @@ GUI\Cap_NhatGUI.class
 GUI\TaoThe_GUI$2.class
 GUI\Mua_DoGUI$3.class
 GUI\Thanh_ToanGUI.class
+service\ApiService.class
 GUI\Cap_NhatGUI$1.class

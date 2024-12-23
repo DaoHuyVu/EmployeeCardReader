@@ -6,18 +6,13 @@ package GUI;
 
 import Model.SmartCard;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.text.SimpleDateFormat;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import service.ApiService;
 
 /**
  *
@@ -25,9 +20,11 @@ import javax.swing.JOptionPane;
  */
 public class TaoThe_GUI extends javax.swing.JPanel {
 private final SmartCard SmartCard;
-private int currentEmployeeId;
+private final int currentEmployeeId;
+private final ApiService service = new ApiService();
     /**
      * Creates new form Tao_TheGUI
+     * @param SmartCard
      */
     public TaoThe_GUI(SmartCard SmartCard) {
         this.SmartCard = SmartCard;
@@ -35,7 +32,9 @@ private int currentEmployeeId;
 //        if(!SmartCard.getInfo().equals("$$$")) {
 //            button1.setEnabled(false);
 //        }
-        getLatestEmployeeId();
+       
+       currentEmployeeId = service.getLatestEmployeeId();
+       idField.setText(service.formatEmployeeId(currentEmployeeId));
     }
 
     /**
@@ -71,7 +70,7 @@ private int currentEmployeeId;
         imgField.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         imgField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgField.setToolTipText("");
-        imgField.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        imgField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         label4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         label4.setText("Mã PIN :");
@@ -150,7 +149,12 @@ private int currentEmployeeId;
         buttonGroup1.add(nuButton);
         nuButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         nuButton.setText("Nữ");
-        namButton.setActionCommand("Nữ");
+        nuButton.setActionCommand("Nữ");
+        nuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuButtonActionPerformed(evt);
+            }
+        });
 
         nameField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         nameField.addActionListener(new java.awt.event.ActionListener() {
@@ -298,7 +302,6 @@ private int currentEmployeeId;
             String birth = String.valueOf(birthField.getText());
             String pin = String.valueOf(pinField.getText());
             String gender = String.valueOf(buttonGroup1.getSelection().getActionCommand());
-
             StringBuilder sb = new StringBuilder();
             sb.append(id).append("$").append(name).append("$").append(birth).append("$").append(gender).append("$").append(pin);
             String r = sb.toString();
@@ -328,7 +331,7 @@ private int currentEmployeeId;
                                 SmartCard.changeImage(image);
                             }
                             JOptionPane.showMessageDialog(this,"Tạo thông tin thẻ thành công");
-                            
+                            service.pushEmployeeData(id, name, gender, birth, pin, "publicKey");
                             javax.swing.JPanel parent = (javax.swing.JPanel) this.getParent();
                             parent.removeAll();
                             parent.add(new TaoThe_GUI(SmartCard));
@@ -357,6 +360,10 @@ private int currentEmployeeId;
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
 
+    private void nuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField birthField;
@@ -378,59 +385,6 @@ private int currentEmployeeId;
     private javax.swing.JTextField pinField;
     private javax.swing.JButton selectImgButton;
     // End of variables declaration//GEN-END:variables
-    private void getLatestEmployeeId(){
-         try {
-            // Define the URL
-            URL url = new URI("http://localhost:9192/employee/latestId").toURL();
-            // Open connection
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
 
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            StringBuilder response = new StringBuilder();
-                
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-
-            // Print response
-            currentEmployeeId = Integer.parseInt(response.toString()) + 1;
-            idField.setText(formatEmployeeId());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    private String formatEmployeeId(){
-       return "NV" + String.format("%06d", currentEmployeeId);
-    }
-    private void pushEmployeeData(
-            String employeeId,
-            String name,
-            String gender,
-            String dateOfBirth,
-            Double balance,
-            String pinCode,
-            String publicKey
-    ){
-         try {
-            // Define the URL
-            URL url = new URI("http://localhost:9192/employee").toURL();
-            // Open connection
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
-
-            connection.setDoOutput(true);
-            
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
    

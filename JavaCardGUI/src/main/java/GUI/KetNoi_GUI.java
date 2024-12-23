@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class KetNoi_GUI extends javax.swing.JFrame {
      private final SmartCard SmartCard = new SmartCard();
+     public static String employeeId;
     /**
      * Creates new form NhanVien_KetNoi
      */
@@ -108,7 +109,11 @@ public class KetNoi_GUI extends javax.swing.JFrame {
             if(!SmartCard.getInfo().equals("$$$")) {
                 if(!SmartCard.checkLocked()) {
                     Chuc_NangGUI.setVisible(true);
-                    this.setVisible(false);  
+                    String s = SmartCard.getInfo();
+                    String[] info = s.split("\\$");
+
+                    ChucNang_NhanVien.employeeId = info[0];
+                    this.setVisible(false);
                 } else {
                     SmartCard.disconnectCard();
                     JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa, liên hệ admin để mở khóa thẻ");

@@ -18,7 +18,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import service.ApiService;
 /**
  *
  * @author ADMIN
@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 public class Cap_NhatGUI extends javax.swing.JDialog {
     private final SmartCard SmartCard;
     private final ThongTin ThongTin;
+    private final ApiService service = new ApiService();
     /**
      * Creates new form Cap_NhatGUI
      */
@@ -354,6 +355,14 @@ public class Cap_NhatGUI extends javax.swing.JDialog {
                         if (image != null) {
                             SmartCard.changeImage(image);
                         }
+                        String information = String.format("""
+                                                       {
+                                                            "name" : "%s",
+                                                            "dateOfBirth" : "%s",
+                                                            "gender" : "%s"
+                                                       }
+                                                    """,name,birth,gender);
+                        service.updateData(information);
                         JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công");
                         ThongTin.afterUpdate();
                         this.setVisible(false);
