@@ -15,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -126,5 +127,42 @@ public class ApiService {
                 connection.disconnect();
             }
         }
+    }
+    public byte[] getPublicKey(String employeeId){
+         HttpURLConnection connection = null;
+         byte[] result = new byte[512];
+         try {
+            URL url = URI.create(employeeRequestPrefix + "/publicKey?employeeId=" + employeeId).toURL();
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Accept", "application/json");
+         
+             StringBuilder response;
+             try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                 String line;
+                 response = new StringBuilder();
+                 while ((line = reader.readLine()) != null) {
+                     response.append(line);
+                 }}
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+            
+            byte[] temp = Base64.getDecoder().decode(response.toString());
+            for(int i = 0; i<temp.length ;++i){
+                result[i] = temp[i];
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+          finally {
+            // Ensure connection is closed
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+        return result;
     }
 }

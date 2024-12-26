@@ -173,23 +173,22 @@ public class SmartCard {
     }
 
     // Tao thong tin cho the moi
-    public boolean initInfo(byte[] info) {
+    public byte[] initInfo(byte[] info) {
         try {
             response = channel.transmit(new CommandAPDU(0xA0, 0x00, 0x00, 0x00, info));
             String check = Integer.toHexString(response.getSW());
-
             switch (check) {
                 case "9000" -> {
-                    return true;
+                    return response.getData();
                 }   
                 default -> {
-                    return false;
+                    return null;
                 }
             }
         } catch (CardException e) {
-
+            
         }
-        return false;
+        return null;
     }
 
     // Lay thong tin
@@ -271,17 +270,29 @@ public class SmartCard {
         try {
             response = channel.transmit(new CommandAPDU(0xA0, 0x14, 0x00, 0x00));
             byte[] data = response.getData();
-            System.out.print("Get from card: ");
-            for (byte d : data) {
-                System.out.print((d & 0xFF) + " "); // Mask to avoid sign extension
+            StringBuilder sb = new StringBuilder();
+            for(byte i : data){
+                sb.append(i);
+                System.out.println(i + " ");
             }
-            System.out.print("\n");
-
-            // Reconstruct the value safely
+            
             return (data[3] & 0xFF) | ((data[2] & 0xFF) << 8) | ((data[1] & 0xFF) << 16) | ((data[0] & 0xFF) << 24);
         } catch (CardException e) {
             
         }
         return 0;
+    }
+    public String getID(){
+        try{
+             response = channel.transmit(new CommandAPDU(0xA0, 0x12, 0x00, 0x00));
+            byte[] data = response.getData();
+            StringBuilder sb = new StringBuilder();
+            for(byte i : data){
+                sb.append((char)i);
+            }
+            return sb.toString();
+        }catch(CardException e){
+            throw new RuntimeException("Can't get ");
+        }
     }
 }

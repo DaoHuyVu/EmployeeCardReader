@@ -17,6 +17,7 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
     private JPanel onSelect = null;
     //Global IP used to stored EmployeeId , but should be used within this frame l
     public static String employeeId;
+    public static byte[] publicKey;
     /**
      * Creates new form ChucNang_NhanVien
      */

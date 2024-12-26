@@ -5,7 +5,9 @@
 package GUI;
 
 import Model.SmartCard;
+import java.util.Locale;
 import javax.swing.JOptionPane;
+import service.ApiService;
 
 /**
  *
@@ -15,6 +17,7 @@ public class NhapPin extends javax.swing.JDialog {
     private final SmartCard SmartCard;
     private final Runnable onSuccess;
     private final Runnable onCancel;
+    private final ApiService service = new ApiService();
     /**
      * Creates new form NhapPin
      */
@@ -154,6 +157,12 @@ public class NhapPin extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Đã nhập sai mã PIN " + count + "/3 lần. Sau 3 lần sai, thẻ sẽ bị khóa");
         } else {
             JOptionPane.showMessageDialog(this, "Nhập sai quá số lần cho phép, thẻ bị khóa và kết thúc phiên");
+            String data = """
+                          {
+                            "isLock" : "true"
+                          }
+                          """;
+            service.updateData(data);
             if (getParent() instanceof ChucNang_NhanVien) {
             ((ChucNang_NhanVien) getParent()).setVisible(false); 
             }

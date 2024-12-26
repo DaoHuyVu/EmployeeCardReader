@@ -5,7 +5,9 @@
 package GUI;
 
 import Model.SmartCard;
+import java.util.Locale;
 import javax.swing.JOptionPane;
+import service.ApiService;
 
 /**
  *
@@ -13,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class MoKhoa extends javax.swing.JPanel {
     private final SmartCard SmartCard;
+    private final ApiService service = new ApiService();
     /**
      * Creates new form MoKhoa
      */
@@ -90,6 +93,12 @@ public class MoKhoa extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if(SmartCard.unlockCard()) {
+            String data = """
+                          {
+                            "isLock" : "false"
+                          }
+                          """;
+            service.updateData(data);
             JOptionPane.showMessageDialog(this,"Mở khóa thẻ thành công");
         }
     }//GEN-LAST:event_jButton1ActionPerformed

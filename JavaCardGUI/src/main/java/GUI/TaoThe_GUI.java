@@ -8,6 +8,7 @@ import Model.SmartCard;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.util.Base64;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -326,12 +327,18 @@ private final ApiService service = new ApiService();
             if(!nameField.getText().isEmpty() && !nameField.getText().isEmpty() && !pinField.getText().isEmpty()) {
                 if(birth.matches(dateRegex)) {
                     if(pin.length() == 6) {
-                        if(SmartCard.initInfo(info)) {
+                        byte[] result = SmartCard.initInfo(info);
+                        if(result != null) {
                             if(image != null) {
                                 SmartCard.changeImage(image);
                             }
-                            JOptionPane.showMessageDialog(this,"Tạo thông tin thẻ thành công");
-                            service.pushEmployeeData(id, name, gender, birth, pin, "publicKey");
+                            JOptionPane.showMessageDialog(this,"Tạo thông  tin thẻ thành công");
+                            StringBuilder sb2 = new StringBuilder();
+                            byte[] encodedPublicKey = Base64.getEncoder().encode(result);
+                            for(byte i : encodedPublicKey){
+                                sb2.append((char)i);
+                            }
+                            service.pushEmployeeData(id, name, gender, birth, pin, sb2.toString());
                             javax.swing.JPanel parent = (javax.swing.JPanel) this.getParent();
                             parent.removeAll();
                             parent.add(new TaoThe_GUI(SmartCard));

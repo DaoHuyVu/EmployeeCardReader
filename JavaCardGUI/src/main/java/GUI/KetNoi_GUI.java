@@ -6,6 +6,7 @@ package GUI;
 
 import Model.SmartCard;
 import javax.swing.JOptionPane;
+import service.ApiService;
 
 /**
  *
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class KetNoi_GUI extends javax.swing.JFrame {
      private final SmartCard SmartCard = new SmartCard();
-     public static String employeeId;
+     private final ApiService service = new ApiService();
     /**
      * Creates new form NhanVien_KetNoi
      */
@@ -109,10 +110,10 @@ public class KetNoi_GUI extends javax.swing.JFrame {
             if(!SmartCard.getInfo().equals("$$$")) {
                 if(!SmartCard.checkLocked()) {
                     Chuc_NangGUI.setVisible(true);
-                    String s = SmartCard.getInfo();
-                    String[] info = s.split("\\$");
-
-                    ChucNang_NhanVien.employeeId = info[0];
+                    String s = SmartCard.getID();
+                    ChucNang_NhanVien.employeeId = s;
+                    ChucNang_NhanVien.publicKey = service.getPublicKey(ChucNang_NhanVien.employeeId);
+                    
                     this.setVisible(false);
                 } else {
                     SmartCard.disconnectCard();

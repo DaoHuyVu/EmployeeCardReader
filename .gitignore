@@ -26,6 +26,7 @@ out/
 .sts4-cache
 bin/
 *.class
+**/target
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 

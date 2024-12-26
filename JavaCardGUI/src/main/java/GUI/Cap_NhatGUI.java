@@ -322,13 +322,12 @@ public class Cap_NhatGUI extends javax.swing.JDialog {
         String dateRegex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/\\d{4}$";
         
         if (namButton.isSelected() || nuButton.isSelected()) {
-            String id = idField.getText();
             String name = nameField.getText();
             String birth = birthField.getText();
             String gender = buttonGroup1.getSelection().getActionCommand();
 
             StringBuilder sb = new StringBuilder();
-            sb.append(id).append("$").append(name).append("$").append(birth).append("$").append(gender);
+            sb.append(name).append("$").append(birth).append("$").append(gender);
             String r = sb.toString();
             byte[] info = SmartCard.stringToByteArray(r);
 
