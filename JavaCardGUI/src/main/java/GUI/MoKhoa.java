@@ -35,6 +35,8 @@ public class MoKhoa extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        pinField = new javax.swing.JTextField();
+        label4 = new java.awt.Label();
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -61,6 +63,11 @@ public class MoKhoa extends javax.swing.JPanel {
                 .addGap(17, 17, 17))
         );
 
+        pinField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        label4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        label4.setText("Mã PIN :");
+
         jButton1.setBackground(new java.awt.Color(153, 255, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setText("Mở khóa");
@@ -75,32 +82,66 @@ public class MoKhoa extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(206, 206, 206))
+                .addGap(207, 207, 207))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 368, Short.MAX_VALUE))
+                .addGap(0, 330, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(SmartCard.unlockCard()) {
-            String data = """
-                          {
-                            "isLock" : "false"
-                          }
-                          """;
-            service.updateData(data);
-            JOptionPane.showMessageDialog(this,"Mở khóa thẻ thành công");
+        String pin = String.valueOf(pinField.getText());
+        if(!pinField.getText().isEmpty()) {
+            if(pin.length() == 6) {
+                byte[] PIN = SmartCard.stringToByteArray(pin);
+                if (SmartCard.changePIN(PIN)) {
+                    StringBuilder pinCode = new StringBuilder();
+                    for(byte i : PIN){
+                        pinCode.append((char)i);
+                    }
+                    System.out.print(pinCode);
+                    String pinData = String.format(Locale.getDefault(),"""
+                                  {
+                                    "pinCode" : "%s"
+                                  }
+                                    """,pinCode);
+                    service.updateData(pinData);
+                    if(SmartCard.unlockCard()) {
+                        String data = """
+                                      {
+                                        "isLock" : "false"
+                                      }
+                                      """;
+                        service.updateData(data);
+                        JOptionPane.showMessageDialog(this,"Mở khóa thẻ thành công");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,"Độ dài PIN phải gồm 6 kí tự");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,"Chưa nhập mã PIN");
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -108,5 +149,7 @@ public class MoKhoa extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private java.awt.Label label4;
+    private javax.swing.JTextField pinField;
     // End of variables declaration//GEN-END:variables
 }

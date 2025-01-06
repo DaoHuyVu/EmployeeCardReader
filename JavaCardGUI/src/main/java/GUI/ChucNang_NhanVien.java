@@ -37,6 +37,10 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
     public void setOnSelect(JPanel onSelect) {
         this.onSelect = onSelect;
     }
+
+    public JPanel getMainContent() {
+        return MainContent;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.

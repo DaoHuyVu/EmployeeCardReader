@@ -79,7 +79,7 @@ public class ApiService {
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accpet", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
             connection.setDoOutput(true);
             
          try (OutputStream os = connection.getOutputStream()) {
@@ -109,7 +109,7 @@ public class ApiService {
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setRequestProperty("Accept", "application/json");
             connection.setDoOutput(true);
-            String body = String.format(Locale.getDefault(),"fields=%s&employeeId=%s",data,ChucNang_NhanVien.employeeId);
+            String body = String.format(Locale.getDefault(),"fields=%s&employeeId=%s",data,ChucNang_NhanVien.employeeId.replaceFirst("^NV0*", ""));
          try (OutputStream os = connection.getOutputStream()) {
                 byte[] input = body.getBytes("UTF-8");
                 os.write(input,0,input.length);
@@ -164,5 +164,105 @@ public class ApiService {
             }
         }
         return result;
+    }
+    public void checkIn() {
+        HttpURLConnection connection = null;
+        try {
+            URL url = URI.create(employeeRequestPrefix + "/checkIn?employeeId=" + ChucNang_NhanVien.employeeId.replaceFirst("^NV0*", "")).toURL();
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+
+            StringBuilder response;
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                String line;
+                response = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+            
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+    public void checkOut() {
+        HttpURLConnection connection = null;
+        try {
+            URL url = URI.create(employeeRequestPrefix + "/checkOut?employeeId=" + ChucNang_NhanVien.employeeId.replaceFirst("^NV0*", "")).toURL();
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+
+            StringBuilder response;
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                String line;
+                response = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+    public boolean checkActiveSession() {
+        HttpURLConnection connection = null;
+        try {
+            URL url = URI.create(employeeRequestPrefix + "/hasActiveSession?employeeId=" + ChucNang_NhanVien.employeeId.replaceFirst("^NV0*", "")).toURL();
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Accept", "application/json");
+
+            // Đọc phản hồi từ server
+            StringBuilder response;
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                String line;
+                response = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                String message = response.toString();
+                System.out.println(message);
+                if(message.contains("Active Session record exists.")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                System.out.println("Failed to check active session. Response Code: " + responseCode);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+        return false;
     }
 }

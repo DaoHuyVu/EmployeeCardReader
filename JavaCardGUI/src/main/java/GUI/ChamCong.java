@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.*;
 import javax.swing.SwingUtilities;
+import service.ApiService;
 
 /**
  *
@@ -19,6 +20,7 @@ public class ChamCong extends javax.swing.JPanel implements Runnable {
     private int year, month, day, hour, minute, second;
     private final SmartCard SmartCard;
     private final ChucNang_NhanVien ChucNang_NhanVien;
+    private final ApiService service = new ApiService();
     
    public ChamCong(SmartCard SmartCard, ChucNang_NhanVien ChucNang_NhanVien) {
     this.SmartCard = SmartCard;
@@ -63,6 +65,12 @@ public class ChamCong extends javax.swing.JPanel implements Runnable {
         }
     });
     t.start();  // Khởi động thread
+    
+    if(service.checkActiveSession()) {
+        vaoButton.setEnabled(false);
+    } else {
+        raButton.setEnabled(false);
+    }
 }
 
 
@@ -175,10 +183,36 @@ public class ChamCong extends javax.swing.JPanel implements Runnable {
 
     private void vaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaoButtonActionPerformed
         // TODO add your handling code here:
+        NhapPin NhapPin = new NhapPin(ChucNang_NhanVien, SmartCard, () -> {
+            SwingUtilities.invokeLater(() -> {
+            ChucNang_NhanVien.getMainContent().removeAll();
+            ChamCong ChamCong = new ChamCong(SmartCard, ChucNang_NhanVien);
+            ChucNang_NhanVien.getMainContent().add(ChamCong);
+            ChucNang_NhanVien.getMainContent().revalidate();
+            ChucNang_NhanVien.getMainContent().repaint();
+            });
+
+            service.checkIn();
+        }, null
+        );
+        NhapPin.setVisible(true);
     }//GEN-LAST:event_vaoButtonActionPerformed
 
     private void raButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_raButtonActionPerformed
         // TODO add your handling code here:
+        NhapPin NhapPin = new NhapPin(ChucNang_NhanVien, SmartCard, () -> {
+            SwingUtilities.invokeLater(() -> {
+            ChucNang_NhanVien.getMainContent().removeAll();
+            ChamCong ChamCong = new ChamCong(SmartCard, ChucNang_NhanVien);
+            ChucNang_NhanVien.getMainContent().add(ChamCong);
+            ChucNang_NhanVien.getMainContent().revalidate();
+            ChucNang_NhanVien.getMainContent().repaint();
+            });
+            
+            service.checkOut();
+        }, null
+        );
+        NhapPin.setVisible(true);
     }//GEN-LAST:event_raButtonActionPerformed
 
 

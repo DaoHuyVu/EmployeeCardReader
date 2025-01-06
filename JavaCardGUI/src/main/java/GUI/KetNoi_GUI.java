@@ -107,7 +107,7 @@ public class KetNoi_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
      ChucNang_NhanVien Chuc_NangGUI = new ChucNang_NhanVien(SmartCard);
         if(SmartCard.connectCard()) {
-            if(!SmartCard.getInfo().equals("$$$")) {
+            if(!SmartCard.getInfo().equals("6f00")) {
                 if(!SmartCard.checkLocked()) {
                     Chuc_NangGUI.setVisible(true);
                     String s = SmartCard.getID();

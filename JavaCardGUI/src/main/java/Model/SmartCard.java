@@ -139,9 +139,9 @@ public class SmartCard {
             response = channel.transmit(new CommandAPDU(0xA0, 0x02, 0x00, 0x00, PIN));
             byte[] data = response.getData();
             String d = bytesToHex(data);
-            String s = Integer.toHexString(response.getSW());
+            String check = Integer.toHexString(response.getSW());
             String s2 = Integer.toHexString(response.getSW2());
-            if(s.equals("9000")) {
+            if(check.equals("9000")) {
                 return d;
             } else {
                 return s2;
@@ -199,7 +199,12 @@ public class SmartCard {
             String d = bytesToHex(data).replaceAll(" ", "");
             byte[] bytes = hexStringToByteArray(d);
             String info = new String(bytes, StandardCharsets.UTF_8);
-            return info;
+            String check = Integer.toHexString(response.getSW());
+            if(check.equals("9000")) {
+                return d;
+            } else {
+                return check;
+            }
         } catch (CardException e) {
             
         }
