@@ -30,9 +30,9 @@ private final ApiService service = new ApiService();
     public TaoThe_GUI(SmartCard SmartCard) {
         this.SmartCard = SmartCard;
         initComponents();
-        if(!SmartCard.getInfo().equals("6f00")) {
-            button1.setEnabled(false);
-        }
+//        if(!SmartCard.getInfo().equals("6f00")) {
+//            button1.setEnabled(false);
+//        }
        
        currentEmployeeId = service.getLatestEmployeeId();
        idField.setText(service.formatEmployeeId(currentEmployeeId));

@@ -8,6 +8,7 @@ GUI\KetNoi_GUI$3.class
 GUI\ChamCong.class
 GUI\TaoThe_GUI$5.class
 GUI\ChamCong$3.class
+GUI\Mua_DoGUI$4.class
 GUI\Thanh_ToanGUI$2.class
 GUI\Cap_NhatGUI$3.class
 GUI\ChucNang_NhanVien$2.class
@@ -45,12 +46,14 @@ GUI\Cap_NhatGUI$5.class
 GUI\ChamCong$1$1.class
 Model\Item.class
 GUI\Thanh_ToanGUI$3.class
+Model\LeftAlignHeaderRenderer.class
 GUI\ThongTin$1.class
 GUI\Cap_NhatGUI$8.class
 GUI\KetNoi_GUI$2.class
 GUI\MoKhoa$1.class
 GUI\Cap_NhatGUI.class
 GUI\TaoThe_GUI$2.class
+Model\LeftAlignRenderer.class
 GUI\DoiPin.class
 GUI\Mua_DoGUI$3.class
 GUI\ChamCong$1.class

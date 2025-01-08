@@ -1,25 +1,35 @@
 package Model;
 
 public class Item {
+    private int id;
     private String name;
-    private int price;
     private int quantity;
+    private long price;
     public Item() {}
-    public Item(String name, int price, int quantity) {
+    public Item(int id, String name, int quantity, long price) {
+        this.id = id; 
         this.name = name;
-        this.price = price;
         this.quantity = quantity;
+        this.price = price;
     }
     public String getName() {
         return name;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setName(String name) {
         this.name = name;
     }
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
     }
     public int getQuantity() {
@@ -30,6 +40,11 @@ public class Item {
     }
     @Override
     public String toString() {
-        return "Item{name='" + name + "', price=" + price + ", quantity=" + quantity + '}';
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
     }
 }

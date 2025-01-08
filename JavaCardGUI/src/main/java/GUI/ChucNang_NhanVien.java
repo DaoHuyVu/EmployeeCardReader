@@ -350,7 +350,7 @@ public class ChucNang_NhanVien extends javax.swing.JFrame {
         if(onSelect == MuaDo) return;
         NhapPin NhapPin = new NhapPin(this, SmartCard, () -> {
             MainContent.removeAll();
-            Mua_DoGUI md = new Mua_DoGUI();
+            Mua_DoGUI md = new Mua_DoGUI(SmartCard, this);
             MainContent.add(md);
             MainContent.revalidate();
             MainContent.repaint();
