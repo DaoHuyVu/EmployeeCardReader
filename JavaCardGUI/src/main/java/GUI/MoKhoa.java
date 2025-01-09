@@ -66,7 +66,7 @@ public class MoKhoa extends javax.swing.JPanel {
         pinField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         label4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        label4.setText("Mã PIN :");
+        label4.setText("Mã PIN mới :");
 
         jButton1.setBackground(new java.awt.Color(153, 255, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -105,6 +105,9 @@ public class MoKhoa extends javax.swing.JPanel {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 330, Short.MAX_VALUE))
         );
+
+        label4.getAccessibleContext().setAccessibleName("Mã PIN mới :");
+        label4.getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

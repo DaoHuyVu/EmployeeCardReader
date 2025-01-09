@@ -170,14 +170,10 @@ public class Nap_TienGUI extends javax.swing.JDialog {
                 cash[2] = (byte)((l >> 8) & 0xff);
                 cash[3] = (byte)((l) & 0xff);
                 System.out.print("Deposit : ");
-                for(byte i : cash){
-                    System.out.print(i+" ");
-                }
-                System.out.print("\n");
                 if(SmartCard.deposit(cash)) {
                     String balance = String.format("""
                                                    {
-                                                        "balance" : "%s"
+                                                        "balance" : %s
                                                    }
                                                    """,l);
                     service.updateData(balance);

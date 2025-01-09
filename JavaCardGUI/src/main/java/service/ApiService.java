@@ -109,7 +109,35 @@ public class ApiService {
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setRequestProperty("Accept", "application/json");
             connection.setDoOutput(true);
-            String body = String.format(Locale.getDefault(),"fields=%s&employeeId=%s",data,ChucNang_NhanVien.employeeId.replaceFirst("^NV0*", ""));
+            String body = String.format(Locale.getDefault(),"fields=%s&id=%s",data,ChucNang_NhanVien.employeeId.replaceFirst("^NV0*", ""));
+         try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = body.getBytes("UTF-8");
+                os.write(input,0,input.length);
+            }
+
+            // Get the response code
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+          finally {
+            // Ensure connection is closed
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+    public void withdrawal(Long toPay){
+         HttpURLConnection connection = null;
+         try {
+            URL url = URI.create(employeeRequestPrefix + "/withdrawal").toURL();
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("PUT");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            String body = String.format("balance=%d&id=%s",toPay,ChucNang_NhanVien.employeeId.replaceFirst("^NV0*", ""));
          try (OutputStream os = connection.getOutputStream()) {
                 byte[] input = body.getBytes("UTF-8");
                 os.write(input,0,input.length);
@@ -143,16 +171,8 @@ public class ApiService {
                  response = new StringBuilder();
                  while ((line = reader.readLine()) != null) {
                      response.append(line);
-                 }}
-
-            // Get the response code
-            int responseCode = connection.getResponseCode();
-            System.out.println("Response Code: " + responseCode);
-            
-            byte[] temp = Base64.getDecoder().decode(response.toString());
-            for(int i = 0; i<temp.length ;++i){
-                result[i] = temp[i];
-            }
+                 }}            
+            result = Base64.getDecoder().decode(response.toString());
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -265,4 +285,5 @@ public class ApiService {
         }
         return false;
     }
+    
 }

@@ -11,11 +11,11 @@ import Model.SmartCard;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import service.ApiService;
 
 /**
  *
@@ -28,7 +28,9 @@ public class Mua_DoGUI extends javax.swing.JPanel {
     private ArrayList<Item> addedList;     // Items added to cart
     private javax.swing.JPopupMenu listTablePopup;     // Popup menu for listTable
     private javax.swing.JPopupMenu addedTablePopup;    // Popup menu for addedTable
-
+    private final ApiService service = new ApiService();
+    private long balance;
+    private long toPay = 0;
     /**
      * Creates new form Mua_DoGUI
      */
@@ -47,7 +49,7 @@ public class Mua_DoGUI extends javax.swing.JPanel {
     
     private void setBalanceToLabel() {
         try {
-            long balance = SmartCard.getBalance();
+            balance = SmartCard.getBalance();
             balanceLabel.setText(String.valueOf(balance) + " VND");
         } catch (Exception e) {
             
@@ -196,11 +198,11 @@ public class Mua_DoGUI extends javax.swing.JPanel {
     }
 
     private void updatePayMoneyLabel() {
-        int total = 0;
+        toPay = 0;
         for (Item item : addedList) {
-            total += item.getPrice() * item.getQuantity();
+            toPay += item.getPrice() * item.getQuantity();
         }
-        payMoneyLabel.setText(total + " VND");
+        payMoneyLabel.setText(toPay + " VND");
     }
 
     private void updateListTable() {
@@ -218,7 +220,13 @@ public class Mua_DoGUI extends javax.swing.JPanel {
             model.addRow(new Object[]{item.getName(), item.getQuantity()});
         }
     }
-
+    private void removeAddedTable(){
+        DefaultTableModel model = (DefaultTableModel) addedTable.getModel();
+        for(int i = 0; i<addedList.size() ;++i){
+            model.removeRow(i);
+            addedList.remove(i);
+        }
+    }
     private void loadSampleItems() {
         itemList.add(new Item(1, "A", 10, 10000));
         itemList.add(new Item(2, "B", 5, 20000));
@@ -347,21 +355,22 @@ public class Mua_DoGUI extends javax.swing.JPanel {
         if (listTable.getColumnModel().getColumnCount() > 0) {
             listTable.getColumnModel().getColumn(0).setResizable(false);
             listTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-            listTable.getColumnModel().getColumn(0).setCellRenderer(null);
             listTable.getColumnModel().getColumn(1).setResizable(false);
             listTable.getColumnModel().getColumn(1).setPreferredWidth(80);
-            listTable.getColumnModel().getColumn(1).setCellRenderer(null);
             listTable.getColumnModel().getColumn(2).setResizable(false);
             listTable.getColumnModel().getColumn(2).setPreferredWidth(20);
-            listTable.getColumnModel().getColumn(2).setCellRenderer(null);
             listTable.getColumnModel().getColumn(3).setResizable(false);
             listTable.getColumnModel().getColumn(3).setPreferredWidth(50);
-            listTable.getColumnModel().getColumn(3).setCellRenderer(null);
         }
 
         payButton.setBackground(new java.awt.Color(153, 255, 153));
         payButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         payButton.setText("Thanh Toán");
+        payButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payButtonActionPerformed(evt);
+            }
+        });
 
         payMoneyLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         payMoneyLabel.setText("0 VND");
@@ -395,7 +404,7 @@ public class Mua_DoGUI extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(22, 22, 22))))
         );
@@ -420,9 +429,6 @@ public class Mua_DoGUI extends javax.swing.JPanel {
                 .addGap(23, 23, 23))
         );
 
-        label8.getAccessibleContext().setAccessibleName("Số dư:");
-        label9.getAccessibleContext().setAccessibleName("Số tiền thanh toán:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -434,6 +440,29 @@ public class Mua_DoGUI extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
+        // TODO add your handling code here:
+        if(balance < toPay){
+            JOptionPane.showMessageDialog(this, "Không đủ tiền!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            byte[] cash = new byte[4];
+            cash[0] = (byte)((toPay >> 24) & 0xff);
+            cash[1] = (byte)((toPay >> 16) & 0xff);
+            cash[2] = (byte)((toPay >> 8) & 0xff);
+            cash[3] = (byte)((toPay) & 0xff);
+            if(SmartCard.withdrawal(cash)) {
+                service.withdrawal(toPay);
+                JOptionPane.showMessageDialog(this,"Mua hàng thành công");
+            } else {
+                JOptionPane.showMessageDialog(this,"Xảy ra lỗi trong quá trình nạp");
+            }   
+        }
+        setBalanceToLabel();
+        removeAddedTable();
+        updatePayMoneyLabel();
+    }//GEN-LAST:event_payButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

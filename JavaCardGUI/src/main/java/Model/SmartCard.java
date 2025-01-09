@@ -2,6 +2,12 @@ package Model;
 
 import java.awt.HeadlessException;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Arrays;
+import java.util.Base64;
 import javax.smartcardio.*;
 import java.util.List;
 
@@ -201,7 +207,7 @@ public class SmartCard {
             String info = new String(bytes, StandardCharsets.UTF_8);
             String check = Integer.toHexString(response.getSW());
             if(check.equals("9000")) {
-                return d;
+                return info;
             } else {
                 return check;
             }
@@ -270,7 +276,24 @@ public class SmartCard {
         }
         return false;
     }
-    
+    public boolean withdrawal(byte[] toPay){
+         try {
+            response = channel.transmit(new CommandAPDU(0xA0, 0x16, 0x00, 0x00, toPay));
+            String check = Integer.toHexString(response.getSW());
+
+            switch (check) {
+                case "9000" -> {
+                    return true;
+                }   
+                default -> {
+                    return false;
+                }
+            }
+        } catch (CardException e) {
+
+        }
+        return false;
+    }
     public long getBalance() {
         try {
             response = channel.transmit(new CommandAPDU(0xA0, 0x14, 0x00, 0x00));
@@ -297,7 +320,37 @@ public class SmartCard {
             }
             return sb.toString();
         }catch(CardException e){
-            throw new RuntimeException("Can't get ");
+            e.printStackTrace();
         }
+        return null;
     }
+    public Boolean verifySignedData(byte[] p) {
+        try{
+            response = channel.transmit(new CommandAPDU(0xA0, 0x11, 0x00, 0x00));
+            byte[] data = response.getData();
+            byte[] random = Arrays.copyOfRange(data, 0, 32);
+            byte[] signedRandom = Arrays.copyOfRange(data,32,data.length);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(p);
+            PublicKey publicKey = keyFactory.generatePublic(keySpec);
+            
+            Signature verifier = Signature.getInstance("SHA256withRSA");
+            verifier.initVerify(publicKey);
+            verifier.update(random);
+            return verifier.verify(signedRandom);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Boolean checkCardInit(){
+        try{
+            response = channel.transmit(new CommandAPDU(0xA0, 0x17, 0x00, 0x00));
+            return Integer.toHexString(response.getSW()).equals("9000");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
 }

@@ -43,7 +43,6 @@ public class Cap_NhatGUI extends javax.swing.JDialog {
         try {
             String s = SmartCard.getInfo();
             String[] info = s.split("\\$");
-                
             idField.setText(info[0]);
             nameField.setText(info[1]);
             birthField.setText(info[2]);

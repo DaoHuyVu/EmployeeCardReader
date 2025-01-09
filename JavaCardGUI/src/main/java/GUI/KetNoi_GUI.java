@@ -107,20 +107,23 @@ public class KetNoi_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
      ChucNang_NhanVien Chuc_NangGUI = new ChucNang_NhanVien(SmartCard);
         if(SmartCard.connectCard()) {
-            if(!SmartCard.getInfo().equals("6f00")) {
+            if(!SmartCard.checkCardInit()){
+                JOptionPane.showMessageDialog(this, "Thẻ chưa được tạo thông tin, liên hệ admin để tạo thông tin");
+                return;
+            }
+            ChucNang_NhanVien.employeeId = SmartCard.getID();
+            byte[] publicKey = service.getPublicKey(ChucNang_NhanVien.employeeId);
+            ChucNang_NhanVien.publicKey = publicKey;
+            if(!SmartCard.verifySignedData(publicKey)) {
                 if(!SmartCard.checkLocked()) {
                     Chuc_NangGUI.setVisible(true);
-                    String s = SmartCard.getID();
-                    ChucNang_NhanVien.employeeId = s;
-                    ChucNang_NhanVien.publicKey = service.getPublicKey(ChucNang_NhanVien.employeeId);
-                    
                     this.setVisible(false);
                 } else {
                     SmartCard.disconnectCard();
                     JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa, liên hệ admin để mở khóa thẻ");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Thẻ chưa được tạo thông tin, liên hệ admin để tạo thông tin");
+                JOptionPane.showMessageDialog(this, "Xác thực chữ ký số thất bại");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Không thể kết nối đến thẻ");

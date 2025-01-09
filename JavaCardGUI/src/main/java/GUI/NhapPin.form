@@ -50,7 +50,7 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="pinField" min="-2" pref="190" max="-2" attributes="0"/>
-                  <EmptySpace pref="84" max="32767" attributes="0"/>
+                  <EmptySpace pref="79" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="M&#xe3; PIN:"/>
+            <Property name="text" type="java.lang.String" value="M&#xe3; PIN :"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="pinField">

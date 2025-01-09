@@ -60,6 +60,7 @@ public class ThongTin extends javax.swing.JPanel {
     private void setInfoToLabel() {
         try {
             String s = SmartCard.getInfo();
+            System.out.print(s);
             String[] info = s.split("\\$");
                 
             idLabel.setText(info[0]);

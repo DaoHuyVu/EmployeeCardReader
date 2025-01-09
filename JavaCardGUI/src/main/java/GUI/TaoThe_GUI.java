@@ -8,7 +8,16 @@ import Model.SmartCard;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.math.BigInteger;
+import java.security.KeyFactory;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.RSAPublicKeySpec;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -333,12 +342,28 @@ private final ApiService service = new ApiService();
                                 SmartCard.changeImage(image);
                             }
                             JOptionPane.showMessageDialog(this,"Tạo thông  tin thẻ thành công");
-                            StringBuilder sb2 = new StringBuilder();
-                            byte[] encodedPublicKey = Base64.getEncoder().encode(result);
-                            for(byte i : encodedPublicKey){
-                                sb2.append((char)i);
+                            byte [] modulus = Arrays.copyOfRange(result, 0, 128);
+                            byte [] exponent = Arrays.copyOfRange(result, 128, 131);
+                            
+                            RSAPublicKeySpec keySpec = new RSAPublicKeySpec(new BigInteger(1,modulus), new BigInteger(1,exponent));
+                            KeyFactory keyFactory = null;
+                            try {
+                                keyFactory = KeyFactory.getInstance("RSA");
+                            } catch (NoSuchAlgorithmException ex) {
+                                Logger.getLogger(TaoThe_GUI.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            service.pushEmployeeData(id, name, gender, birth, pin, sb2.toString());
+        
+                            PublicKey publicKey = null;
+                            try {
+                                publicKey = keyFactory.generatePublic(keySpec);
+                            } catch (InvalidKeySpecException ex) {
+                                Logger.getLogger(TaoThe_GUI.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+        
+                            byte[] encodedKey = publicKey.getEncoded();
+                            
+                            String encodedPublicKey = Base64.getEncoder().encodeToString(encodedKey);
+                            service.pushEmployeeData(id, name, gender, birth, pin,encodedPublicKey);
                             javax.swing.JPanel parent = (javax.swing.JPanel) this.getParent();
                             parent.removeAll();
                             parent.add(new TaoThe_GUI(SmartCard));

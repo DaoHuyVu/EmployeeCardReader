@@ -74,7 +74,7 @@ public class NhapPin extends javax.swing.JDialog {
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Mã PIN:");
+        jLabel2.setText("Mã PIN :");
 
         huyButton.setBackground(new java.awt.Color(153, 255, 153));
         huyButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -104,7 +104,7 @@ public class NhapPin extends javax.swing.JDialog {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(huyButton)
