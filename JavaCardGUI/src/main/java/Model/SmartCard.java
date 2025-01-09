@@ -4,6 +4,7 @@ import java.awt.HeadlessException;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.security.Signature;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ public class SmartCard {
     private CardTerminal terminal ;
     private List<CardTerminal> terminals;
     private ResponseAPDU response;
-    
+    private final SecureRandom random = new SecureRandom();
     public String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
@@ -326,17 +327,17 @@ public class SmartCard {
     }
     public Boolean verifySignedData(byte[] p) {
         try{
-            response = channel.transmit(new CommandAPDU(0xA0, 0x11, 0x00, 0x00));
-            byte[] data = response.getData();
-            byte[] random = Arrays.copyOfRange(data, 0, 32);
-            byte[] signedRandom = Arrays.copyOfRange(data,32,data.length);
+            byte [] nonce = new byte[32];
+            random.nextBytes(nonce);
+            response = channel.transmit(new CommandAPDU(0xA0, 0x11, 0x00, 0x00,nonce));
+            byte[] signedRandom = response.getData();
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             X509EncodedKeySpec keySpec = new X509EncodedKeySpec(p);
             PublicKey publicKey = keyFactory.generatePublic(keySpec);
             
             Signature verifier = Signature.getInstance("SHA256withRSA");
             verifier.initVerify(publicKey);
-            verifier.update(random);
+            verifier.update(nonce);
             return verifier.verify(signedRandom);
         }catch(Exception e){
             e.printStackTrace();

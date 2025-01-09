@@ -445,6 +445,7 @@ public class Mua_DoGUI extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(balance < toPay){
             JOptionPane.showMessageDialog(this, "Không đủ tiền!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         else{
             byte[] cash = new byte[4];
