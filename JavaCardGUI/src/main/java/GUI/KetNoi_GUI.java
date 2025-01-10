@@ -112,18 +112,18 @@ public class KetNoi_GUI extends javax.swing.JFrame {
                 return;
             }
             ChucNang_NhanVien.employeeId = SmartCard.getID();
-            byte[] publicKey = service.getPublicKey(ChucNang_NhanVien.employeeId);
-            ChucNang_NhanVien.publicKey = publicKey;
-            if(!SmartCard.verifySignedData(publicKey)) {
-                if(!SmartCard.checkLocked()) {
+            if(!SmartCard.checkLocked()) {
+                byte[] publicKey = service.getPublicKey(ChucNang_NhanVien.employeeId);
+                ChucNang_NhanVien.publicKey = publicKey;
+                if(!SmartCard.verifySignedData(publicKey)) {
                     Chuc_NangGUI.setVisible(true);
                     this.setVisible(false);
                 } else {
                     SmartCard.disconnectCard();
-                    JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa, liên hệ admin để mở khóa thẻ");
+                    JOptionPane.showMessageDialog(this, "Xác thực chữ ký số thất bại");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Xác thực chữ ký số thất bại");
+                JOptionPane.showMessageDialog(this, "Thẻ đã bị khóa, liên hệ admin để mở khóa thẻ");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Không thể kết nối đến thẻ");

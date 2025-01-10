@@ -121,7 +121,6 @@ public class MoKhoa extends javax.swing.JPanel {
                     for(byte i : PIN){
                         pinCode.append((char)i);
                     }
-                    System.out.print(pinCode);
                     String pinData = String.format(Locale.getDefault(),"""
                                   {
                                     "pinCode" : "%s"
